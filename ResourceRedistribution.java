@@ -1,9 +1,7 @@
-// ResourceRedistribution.java
 import java.util.*;
 
 public class ResourceRedistribution {
     private List<Warehouse> warehouses;
-    private static final int TARGET_LEVEL = 50;
 
     public ResourceRedistribution(List<Warehouse> warehouses) {
         this.warehouses = warehouses;
@@ -12,65 +10,69 @@ public class ResourceRedistribution {
     public Map<String, Object> redistributeResources() {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> transfers = new ArrayList<>();
-        
-        System.out.println("Task 3: Resource Redistribution Using Heap Structure");
+
+        System.out.println("\nTask 3: Resource Redistribution Using Heap Structure");
         System.out.println("Output:");
-        
+
+        // Step 1: Create Surplus and Need Heaps
         PriorityQueue<Warehouse> surplus = new PriorityQueue<>(
-            (w1, w2) -> w2.getCapacity() - w1.getCapacity()
-        );
-        
-        PriorityQueue<Warehouse> need = new PriorityQueue<>(
-            Comparator.comparingInt(Warehouse::getCapacity)
+            (w1, w2) -> (w2.getCapacity() - 50) - (w1.getCapacity() - 50) // Max-heap by surplus amount
         );
 
+        PriorityQueue<Warehouse> need = new PriorityQueue<>(
+            Comparator.comparingInt(w -> 50 - w.getCapacity()) // Min-heap by need amount
+        );
+
+        // Step 2: Classify Warehouses into Surplus and Need
         for (Warehouse w : warehouses) {
-            if (w.getCapacity() > TARGET_LEVEL) {
+            if (w.getCapacity() > 50) {
                 surplus.add(w);
-            } else if (w.getCapacity() < TARGET_LEVEL) {
+            } else if (w.getCapacity() < 50) {
                 need.add(w);
             }
         }
 
+        // Step 3: Perform Transfers
         while (!surplus.isEmpty() && !need.isEmpty()) {
-            Warehouse from = surplus.peek();
-            Warehouse to = need.peek();
-            
-            int availableSurplus = from.getCapacity() - TARGET_LEVEL;
-            int required = TARGET_LEVEL - to.getCapacity();
-            int transfer = Math.min(availableSurplus, required);
-            
-            if (transfer > 0) {
-                System.out.printf("Transferred %d units from %s to %s.\n", 
-                    transfer, from.getName(), to.getName());
-                
-                Map<String, Object> transferInfo = new HashMap<>();
-                transferInfo.put("From", from.getName());
-                transferInfo.put("To", to.getName());
-                transferInfo.put("Units", transfer);
-                transfers.add(transferInfo);
-                
-                from.setCapacity(from.getCapacity() - transfer);
-                to.setCapacity(to.getCapacity() + transfer);
-                
-                if (from.getCapacity() <= TARGET_LEVEL) surplus.poll();
-                if (to.getCapacity() >= TARGET_LEVEL) need.poll();
+            Warehouse from = surplus.poll();
+            Warehouse to = need.poll();
+
+            int surplusAmount = from.getCapacity() - 50; // Amount over 50
+            int needAmount = 50 - to.getCapacity(); // Amount to reach 50
+            int transferAmount = Math.min(surplusAmount, needAmount);
+
+            if (transferAmount > 0) {
+                System.out.printf("Transferred %d units from Warehouse ID: %d to Warehouse ID: %d.\n", 
+                    transferAmount, from.getId(), to.getId());
+
+                // Update warehouse capacities
+                from.setCapacity(from.getCapacity() - transferAmount);
+                to.setCapacity(to.getCapacity() + transferAmount);
+
+                // Log the transfer
+                Map<String, Object> transferLog = new HashMap<>();
+                transferLog.put("From Warehouse ID", from.getId());
+                transferLog.put("To Warehouse ID", to.getId());
+                transferLog.put("Transferred Units", transferAmount);
+                transfers.add(transferLog);
+
+                // Reinsert warehouses into heaps if still valid
+                if (from.getCapacity() > 50) surplus.add(from);
+                if (to.getCapacity() < 50) need.add(to);
             }
         }
 
-        System.out.println("\nFinal Resource Levels:");
+        // Step 4: Display Final Resource Levels
+        System.out.println("Final Resource Levels:");
         Map<String, Integer> finalLevels = new HashMap<>();
         for (Warehouse w : warehouses) {
-            System.out.printf("%s: %d units\n", w.getName(), w.getCapacity());
-            finalLevels.put(w.getName(), w.getCapacity());
+            System.out.printf("Warehouse ID: %d: %d units\n", w.getId(), w.getCapacity());
+            finalLevels.put("Warehouse ID: " + w.getId(), w.getCapacity());
         }
-        System.out.println();
 
-        Map<String, Object> redistribution = new HashMap<>();
-        redistribution.put("Transfers", transfers);
-        redistribution.put("Final Resource Levels", finalLevels);
-        
-        result.put("Resource Redistribution", redistribution);
+        result.put("Transfers", transfers);
+        result.put("Final Resource Levels", finalLevels);
+
         return result;
     }
 }

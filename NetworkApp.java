@@ -4,40 +4,43 @@ import java.util.*;
 
 public class NetworkApp {
     public static void main(String[] args) {
-        processTestCase("src/TestCase1.txt", "src/Output_testCase1.json");
-        processTestCase("src/TestCase2.txt", "src/Output_testCase2.json");
+        processTestCase("TestCase0.txt", "Output_testCase0.json");
+        processTestCase("TestCase1.txt", "Output_testCase1.json");
+        processTestCase("TestCase2.txt", "Output_testCase2.json");
     }
 
-    private static void processTestCase(String inputFile, String outputFile) {
+    public static void processTestCase(String inputFile, String outputFile) {
         try {
             List<City> cities = new ArrayList<>();
             List<Warehouse> warehouses = new ArrayList<>();
             parseInputFile(inputFile, cities, warehouses);
-
+    
+            // Pass the same warehouse reference to both classes
             EmergencySupplyNetwork network = new EmergencySupplyNetwork(cities, warehouses);
             ResourceRedistribution redistribution = new ResourceRedistribution(warehouses);
             DynamicResourceSharing sharing = new DynamicResourceSharing(cities);
-
+    
             Map<String, Object> result = new HashMap<>();
             
-            // Tasks 1 and 2
+            // Task 2: Resource Allocation
             Map<String, Object> networkResult = network.allocateResources();
             result.put("Task 1 and 2", networkResult);
-
-            // Task 3
+    
+            // Task 3: Resource Redistribution
             Map<String, Object> redistributionResult = redistribution.redistributeResources();
             result.put("Task 3", redistributionResult);
-
-            // Task 4
+    
+            // Task 4: Dynamic Resource Sharing
             Map<String, Object> sharingResult = sharing.processResourceSharing();
             result.put("Task 4", sharingResult);
-
+    
             // Write output to JSON file
             writeJsonOutput(result, outputFile);
         } catch (IOException e) {
             System.err.println("Error processing test case: " + e.getMessage());
         }
     }
+    
 
     private static void parseInputFile(String filename, List<City> cities, List<Warehouse> warehouses) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {

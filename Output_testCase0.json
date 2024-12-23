@@ -3,6 +3,16 @@
         "Resource Allocation": [
             {
                 "Priority": "HIGH",
+                "City ID": 1,
+                "Allocated": [
+                    {
+                        "Warehouse ID": 101,
+                        "Units": 50
+                    }
+                ]
+            },
+            {
+                "Priority": "MEDIUM",
                 "City ID": 2,
                 "Allocated": [
                     {
@@ -12,65 +22,43 @@
                 ]
             },
             {
-                "Priority": "HIGH",
-                "City ID": 4,
-                "Allocated": [
-                    {
-                        "Warehouse ID": 103,
-                        "Units": 50
-                    }
-                ]
-            },
-            {
-                "Priority": "MEDIUM",
-                "City ID": 1,
-                "Allocated": [
-                    {
-                        "Warehouse ID": 101,
-                        "Units": 70
-                    }
-                ]
-            },
-            {
                 "Priority": "LOW",
                 "City ID": 3,
                 "Allocated": [
                     {
-                        "Warehouse ID": 102,
+                        "Warehouse ID": 101,
                         "Units": 20
+                    },
+                    {
+                        "Warehouse ID": 102,
+                        "Units": 30
                     }
                 ]
             }
         ],
         "Remaining Capacities": {
             "101": 0,
-            "102": 30,
-            "103": 100
+            "102": 20,
+            "103": 110
         },
         "Graph Representation": [
             {
                 "City ID": 1,
-                "Warehouse 101": "3.61",
-                "Warehouse 102": "9.22",
-                "Warehouse 103": "36.06"
+                "Warehouse 101": "37.58",
+                "Warehouse 102": "76.66",
+                "Warehouse 103": "110.15"
             },
             {
                 "City ID": 2,
-                "Warehouse 101": "5.00",
-                "Warehouse 102": "7.81",
-                "Warehouse 103": "32.31"
+                "Warehouse 101": "27.86",
+                "Warehouse 102": "61.77",
+                "Warehouse 103": "95.29"
             },
             {
                 "City ID": 3,
-                "Warehouse 101": "24.08",
-                "Warehouse 102": "1.00",
-                "Warehouse 103": "20.10"
-            },
-            {
-                "City ID": 4,
-                "Warehouse 101": "39.40",
-                "Warehouse 102": "9.06",
-                "Warehouse 103": "1.41"
+                "Warehouse 101": "36.22",
+                "Warehouse 102": "72.12",
+                "Warehouse 103": "105.34"
             }
         ]
     },
@@ -91,7 +79,7 @@
                 }
             ],
             "Initial Clusters": {
-                "City C": "Cluster 4",
+                "City C": "Cluster 3",
                 "City A": "Cluster 1",
                 "City B": "Cluster 2"
             },
@@ -111,7 +99,7 @@
         "Final Resource Levels": {
             "Warehouse ID: 101": 100,
             "Warehouse ID: 102": 50,
-            "Warehouse ID: 103": 150
+            "Warehouse ID: 103": 110
         },
         "Transfers": []
     }
