@@ -2855,47 +2855,193 @@
     },
     "Task 3": {
         "Final Resource Levels": {
-            "Warehouse ID: 120": 130,
-            "Warehouse ID: 121": 130,
-            "Warehouse ID: 122": 100,
-            "Warehouse ID: 101": 100,
-            "Warehouse ID: 123": 140,
-            "Warehouse ID: 102": 150,
-            "Warehouse ID: 124": 80,
-            "Warehouse ID: 103": 110,
-            "Warehouse ID: 125": 110,
-            "Warehouse ID: 104": 120,
-            "Warehouse ID: 126": 90,
-            "Warehouse ID: 105": 190,
-            "Warehouse ID: 127": 95,
-            "Warehouse ID: 106": 80,
-            "Warehouse ID: 128": 150,
-            "Warehouse ID: 107": 95,
-            "Warehouse ID: 129": 120,
-            "Warehouse ID: 108": 70,
-            "Warehouse ID: 109": 130,
-            "Warehouse ID: 140": 150,
-            "Warehouse ID: 130": 175,
-            "Warehouse ID: 131": 100,
-            "Warehouse ID: 110": 150,
-            "Warehouse ID: 132": 140,
-            "Warehouse ID: 111": 110,
-            "Warehouse ID: 133": 110,
-            "Warehouse ID: 112": 195,
-            "Warehouse ID: 134": 120,
-            "Warehouse ID: 113": 120,
-            "Warehouse ID: 135": 185,
-            "Warehouse ID: 114": 80,
-            "Warehouse ID: 136": 100,
-            "Warehouse ID: 115": 75,
-            "Warehouse ID: 137": 105,
-            "Warehouse ID: 116": 90,
-            "Warehouse ID: 138": 130,
-            "Warehouse ID: 117": 100,
-            "Warehouse ID: 139": 90,
-            "Warehouse ID: 118": 120,
-            "Warehouse ID: 119": 110
+            "Warehouse ID: 120": 50,
+            "Warehouse ID: 121": 50,
+            "Warehouse ID: 122": 50,
+            "Warehouse ID: 101": 50,
+            "Warehouse ID: 123": 50,
+            "Warehouse ID: 102": 50,
+            "Warehouse ID: 124": 50,
+            "Warehouse ID: 103": 50,
+            "Warehouse ID: 125": 60,
+            "Warehouse ID: 104": 50,
+            "Warehouse ID: 126": 50,
+            "Warehouse ID: 105": 50,
+            "Warehouse ID: 127": 50,
+            "Warehouse ID: 106": 50,
+            "Warehouse ID: 128": 50,
+            "Warehouse ID: 107": 50,
+            "Warehouse ID: 129": 50,
+            "Warehouse ID: 108": 50,
+            "Warehouse ID: 109": 50,
+            "Warehouse ID: 140": 50,
+            "Warehouse ID: 130": 50,
+            "Warehouse ID: 131": 50,
+            "Warehouse ID: 110": 50,
+            "Warehouse ID: 132": 50,
+            "Warehouse ID: 111": 50,
+            "Warehouse ID: 133": 50,
+            "Warehouse ID: 112": 65,
+            "Warehouse ID: 134": 65,
+            "Warehouse ID: 113": 60,
+            "Warehouse ID: 135": 50,
+            "Warehouse ID: 114": 50,
+            "Warehouse ID: 136": 65,
+            "Warehouse ID: 115": 50,
+            "Warehouse ID: 137": 55,
+            "Warehouse ID: 116": 50,
+            "Warehouse ID: 138": 60,
+            "Warehouse ID: 117": 50,
+            "Warehouse ID: 139": 50,
+            "Warehouse ID: 118": 50,
+            "Warehouse ID: 119": 60
         },
-        "Transfers": []
+        "Transfers": [
+            {
+                "To Warehouse ID": 101,
+                "From Warehouse ID": 105,
+                "Transferred Units": 50
+            },
+            {
+                "To Warehouse ID": 135,
+                "From Warehouse ID": 140,
+                "Transferred Units": 50
+            },
+            {
+                "To Warehouse ID": 133,
+                "From Warehouse ID": 110,
+                "Transferred Units": 50
+            },
+            {
+                "To Warehouse ID": 131,
+                "From Warehouse ID": 123,
+                "Transferred Units": 50
+            },
+            {
+                "To Warehouse ID": 130,
+                "From Warehouse ID": 105,
+                "Transferred Units": 50
+            },
+            {
+                "To Warehouse ID": 102,
+                "From Warehouse ID": 120,
+                "Transferred Units": 50
+            },
+            {
+                "To Warehouse ID": 106,
+                "From Warehouse ID": 138,
+                "Transferred Units": 50
+            },
+            {
+                "To Warehouse ID": 111,
+                "From Warehouse ID": 112,
+                "Transferred Units": 50
+            },
+            {
+                "To Warehouse ID": 126,
+                "From Warehouse ID": 113,
+                "Transferred Units": 50
+            },
+            {
+                "To Warehouse ID": 124,
+                "From Warehouse ID": 134,
+                "Transferred Units": 50
+            },
+            {
+                "To Warehouse ID": 122,
+                "From Warehouse ID": 125,
+                "Transferred Units": 50
+            },
+            {
+                "To Warehouse ID": 118,
+                "From Warehouse ID": 119,
+                "Transferred Units": 50
+            },
+            {
+                "To Warehouse ID": 117,
+                "From Warehouse ID": 137,
+                "Transferred Units": 50
+            },
+            {
+                "To Warehouse ID": 116,
+                "From Warehouse ID": 110,
+                "Transferred Units": 50
+            },
+            {
+                "To Warehouse ID": 115,
+                "From Warehouse ID": 140,
+                "Transferred Units": 50
+            },
+            {
+                "To Warehouse ID": 127,
+                "From Warehouse ID": 103,
+                "Transferred Units": 45
+            },
+            {
+                "To Warehouse ID": 129,
+                "From Warehouse ID": 121,
+                "Transferred Units": 45
+            },
+            {
+                "To Warehouse ID": 107,
+                "From Warehouse ID": 139,
+                "Transferred Units": 40
+            },
+            {
+                "To Warehouse ID": 104,
+                "From Warehouse ID": 132,
+                "Transferred Units": 40
+            },
+            {
+                "To Warehouse ID": 108,
+                "From Warehouse ID": 105,
+                "Transferred Units": 40
+            },
+            {
+                "To Warehouse ID": 109,
+                "From Warehouse ID": 123,
+                "Transferred Units": 40
+            },
+            {
+                "To Warehouse ID": 114,
+                "From Warehouse ID": 120,
+                "Transferred Units": 30
+            },
+            {
+                "To Warehouse ID": 109,
+                "From Warehouse ID": 138,
+                "Transferred Units": 10
+            },
+            {
+                "To Warehouse ID": 108,
+                "From Warehouse ID": 136,
+                "Transferred Units": 10
+            },
+            {
+                "To Warehouse ID": 107,
+                "From Warehouse ID": 112,
+                "Transferred Units": 10
+            },
+            {
+                "To Warehouse ID": 104,
+                "From Warehouse ID": 113,
+                "Transferred Units": 10
+            },
+            {
+                "To Warehouse ID": 127,
+                "From Warehouse ID": 138,
+                "Transferred Units": 5
+            },
+            {
+                "To Warehouse ID": 128,
+                "From Warehouse ID": 134,
+                "Transferred Units": 5
+            },
+            {
+                "To Warehouse ID": 129,
+                "From Warehouse ID": 138,
+                "Transferred Units": 5
+            }
+        ]
     }
 }

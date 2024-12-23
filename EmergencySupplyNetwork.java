@@ -116,7 +116,9 @@ public class EmergencySupplyNetwork {
                     allocatedUnits.add(allocationStep);
     
                     remainingDemand -= allocatedAmount;
+                    warehouse.setCapacity(availableCapacity - allocatedAmount);
                     remainingCapacities.put(warehouse.getId(), availableCapacity - allocatedAmount);
+
                 } else {
                     System.out.printf("Skipping Warehouse ID: %d (No Remaining Capacity)\n", warehouse.getId());
                 }

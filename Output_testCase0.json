@@ -97,10 +97,21 @@
     },
     "Task 3": {
         "Final Resource Levels": {
-            "Warehouse ID: 101": 100,
-            "Warehouse ID: 102": 50,
-            "Warehouse ID: 103": 110
+            "Warehouse ID: 101": 50,
+            "Warehouse ID: 102": 30,
+            "Warehouse ID: 103": 50
         },
-        "Transfers": []
+        "Transfers": [
+            {
+                "To Warehouse ID": 101,
+                "From Warehouse ID": 103,
+                "Transferred Units": 50
+            },
+            {
+                "To Warehouse ID": 102,
+                "From Warehouse ID": 103,
+                "Transferred Units": 10
+            }
+        ]
     }
 }
