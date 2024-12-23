@@ -16,11 +16,11 @@ public class ResourceRedistribution {
 
         // Step 1: Create Surplus and Need Heaps
         PriorityQueue<Warehouse> surplus = new PriorityQueue<>(
-            (w1, w2) -> (w2.getCapacity() - 50) - (w1.getCapacity() - 50) // Max-heap by surplus amount
+            (w1, w2) -> w2.getCapacity() - w1.getCapacity()
         );
 
         PriorityQueue<Warehouse> need = new PriorityQueue<>(
-            Comparator.comparingInt(w -> 50 - w.getCapacity()) // Min-heap by need amount
+            Comparator.comparingInt(Warehouse::getCapacity)
         );
 
         // Step 2: Classify Warehouses into Surplus and Need
@@ -37,26 +37,24 @@ public class ResourceRedistribution {
             Warehouse from = surplus.poll();
             Warehouse to = need.poll();
 
-            int surplusAmount = from.getCapacity() - 50; // Amount over 50
-            int needAmount = 50 - to.getCapacity(); // Amount to reach 50
+            int surplusAmount = from.getCapacity() - 50; // Extra above 50
+            int needAmount = 50 - to.getCapacity(); // Amount needed to reach 50
             int transferAmount = Math.min(surplusAmount, needAmount);
 
             if (transferAmount > 0) {
                 System.out.printf("Transferred %d units from Warehouse ID: %d to Warehouse ID: %d.\n", 
                     transferAmount, from.getId(), to.getId());
 
-                // Update warehouse capacities
                 from.setCapacity(from.getCapacity() - transferAmount);
                 to.setCapacity(to.getCapacity() + transferAmount);
 
-                // Log the transfer
                 Map<String, Object> transferLog = new HashMap<>();
                 transferLog.put("From Warehouse ID", from.getId());
                 transferLog.put("To Warehouse ID", to.getId());
                 transferLog.put("Transferred Units", transferAmount);
                 transfers.add(transferLog);
 
-                // Reinsert warehouses into heaps if still valid
+                // Re-add warehouses to heaps if they still meet surplus or need conditions
                 if (from.getCapacity() > 50) surplus.add(from);
                 if (to.getCapacity() < 50) need.add(to);
             }
