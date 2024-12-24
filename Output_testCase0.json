@@ -107,7 +107,12 @@
                     ],
                     "Cluster After Merge": "Cluster 1"
                 }
-            ]
+            ],
+            "Cluster Membership After Merging": {
+                "City C": "Cluster City C",
+                "City A": "Cluster City A",
+                "City B": "Cluster City A"
+            }
         }
     }
 }
