@@ -1,4 +1,4 @@
-// NetworkApp.java - continued from previous implementation
+// NetworkApp.java - Main application for processing emergency supply network test cases
 import java.io.*;
 import java.util.*;
 
@@ -8,36 +8,10 @@ public class NetworkApp {
         processTestCase("TestCase1.txt", "Output_testCase1.json");
         processTestCase("TestCase2.txt", "Output_testCase2.json");
     }
-
+    
+    // Processes a single test case: Parses input, performs tasks, and writes JSON output
     public static void processTestCase(String inputFile, String outputFile) {
         try {
-            /*List<City> cities = new ArrayList<>();
-            List<Warehouse> warehouses = new ArrayList<>();
-            parseInputFile(inputFile, cities, warehouses);
-    
-            // Pass the same warehouse reference to both classes
-            EmergencySupplyNetwork network = new EmergencySupplyNetwork(cities, warehouses);
-            ResourceRedistribution redistribution = new ResourceRedistribution(warehouses);
-            DynamicResourceSharing sharing = new DynamicResourceSharing(cities);
-    
-            Map<String, Object> result = new HashMap<>();
-            
-            // Task 2: Resource Allocation
-            Map<String, Object> networkResult = network.allocateResources();
-            result.put("Task 1 and 2", networkResult);
-            
-    
-            // Task 3: Resource Redistribution
-            Map<String, Object> redistributionResult = redistribution.redistributeResources();
-            result.put("Task 3", redistributionResult);
-    
-            // Task 4: Dynamic Resource Sharing
-            Map<String, Object> sharingResult = sharing.processResourceSharing();
-            result.put("Task 4", sharingResult);
-    
-            // Write output to JSON file
-            writeJsonOutput(result, outputFile);*/
-
             List<City> cities = new ArrayList<>();
             List<Warehouse> warehouses = new ArrayList<>();
             parseInputFile(inputFile, cities, warehouses);
