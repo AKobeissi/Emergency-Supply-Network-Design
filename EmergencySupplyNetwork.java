@@ -70,16 +70,11 @@ public class EmergencySupplyNetwork {
         }
         System.out.println("---------------------------------------------------------------\n");
     
-        // Step 2: Initialize remaining capacities
-        for (Warehouse w : warehouses) {
-            remainingCapacities.put(w.getId(), w.getCapacity());
-        }
-    
-        // Step 3: Sort cities by priority (High > Medium > Low)
+        // Step 2: Sort cities by priority (High > Medium > Low)
         List<City> sortedCities = new ArrayList<>(cities);
         sortedCities.sort((c1, c2) -> c1.getPriority().compareTo(c2.getPriority()));
     
-        // Step 4: Allocate resources dynamically
+        // Step 3: Allocate resources dynamically
         for (City city : sortedCities) {
             System.out.printf("Allocating resources for City ID: %d (Priority: %s)\n", 
                 city.getId(), city.getPriority());
@@ -103,7 +98,7 @@ public class EmergencySupplyNetwork {
                     break; // Stop if demand is fully met
                 }
     
-                int availableCapacity = remainingCapacities.get(warehouse.getId());
+                int availableCapacity = warehouse.getCapacity(); // Directly fetch from Warehouse object
                 if (availableCapacity > 0) {
                     int allocatedAmount = Math.min(availableCapacity, remainingDemand);
     
@@ -116,11 +111,10 @@ public class EmergencySupplyNetwork {
                     allocatedUnits.add(allocationStep);
     
                     remainingDemand -= allocatedAmount;
-                    warehouse.setCapacity(availableCapacity - allocatedAmount);
-                    remainingCapacities.put(warehouse.getId(), availableCapacity - allocatedAmount);
-
-                } else {
-                    System.out.printf("Skipping Warehouse ID: %d (No Remaining Capacity)\n", warehouse.getId());
+                    warehouse.setCapacity(availableCapacity - allocatedAmount); // Update Warehouse directly
+    
+                    
+                    city.addAllocatedWarehouse(warehouse.getId());
                 }
             }
     
@@ -134,10 +128,10 @@ public class EmergencySupplyNetwork {
             allocationResults.add(allocation);
         }
     
-        // Step 5: Print remaining warehouse capacities
+        // Step 4: Print remaining warehouse capacities
         System.out.println("\nRemaining Warehouse Capacities:");
         for (Warehouse w : warehouses) {
-            System.out.printf("Warehouse ID: %d: %d units\n", w.getId(), remainingCapacities.get(w.getId()));
+            System.out.printf("Warehouse ID: %d: %d units\n", w.getId(), w.getCapacity());
         }
         System.out.println();
     
@@ -147,6 +141,7 @@ public class EmergencySupplyNetwork {
     
         return result;
     }
+    
     
     
     

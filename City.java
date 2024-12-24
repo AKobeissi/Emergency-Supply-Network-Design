@@ -1,4 +1,10 @@
 // City.java
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class City {
     private int id;
     private double x;
@@ -6,6 +12,16 @@ public class City {
     private int demand;
     private Priority priority;
     private String name;
+    private Set<Integer> allocatedWarehouses = new HashSet<>();
+
+    public Set<Integer> getAllocatedWarehouses() {
+        return allocatedWarehouses;
+    }
+
+    public void addAllocatedWarehouse(int warehouseId) {
+        allocatedWarehouses.add(warehouseId);
+    }
+
 
     public enum Priority {
         HIGH, MEDIUM, LOW

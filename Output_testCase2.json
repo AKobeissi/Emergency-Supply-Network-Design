@@ -758,48 +758,7 @@
                 "Warehouse": "Warehouse 132"
             }
         ],
-        "Remaining Capacities": {
-            "Warehouse 128": 45,
-            "Warehouse 129": 0,
-            "Warehouse 130": 0,
-            "Warehouse 131": 0,
-            "Warehouse 132": 90,
-            "Warehouse 133": 0,
-            "Warehouse 134": 120,
-            "Warehouse 135": 0,
-            "Warehouse 136": 75,
-            "Warehouse 137": 105,
-            "Warehouse 138": 130,
-            "Warehouse 139": 90,
-            "Warehouse 140": 150,
-            "Warehouse 101": 0,
-            "Warehouse 102": 0,
-            "Warehouse 103": 95,
-            "Warehouse 104": 0,
-            "Warehouse 105": 190,
-            "Warehouse 106": 0,
-            "Warehouse 107": 0,
-            "Warehouse 108": 0,
-            "Warehouse 109": 0,
-            "Warehouse 110": 150,
-            "Warehouse 111": 0,
-            "Warehouse 112": 125,
-            "Warehouse 113": 120,
-            "Warehouse 114": 20,
-            "Warehouse 115": 0,
-            "Warehouse 116": 0,
-            "Warehouse 117": 0,
-            "Warehouse 118": 0,
-            "Warehouse 119": 110,
-            "Warehouse 120": 130,
-            "Warehouse 121": 95,
-            "Warehouse 122": 0,
-            "Warehouse 123": 140,
-            "Warehouse 124": 0,
-            "Warehouse 125": 110,
-            "Warehouse 126": 0,
-            "Warehouse 127": 0
-        }
+        "Remaining Capacities": {}
     },
     "Task 3": {
         "Resource Redistribution": {
@@ -996,63 +955,44 @@
     },
     "Task 4": {
         "Dynamic Resource Sharing": {
-            "Queries": [
-                {
-                    "Query": "Query: Are City A and City C in the same cluster?",
-                    "Result": "No"
-                },
-                {
-                    "Query": "Query: Are City A and City B in the same cluster?",
-                    "Result": "Yes"
-                },
-                {
-                    "Query": "Query: Are City B and City C in the same cluster?",
-                    "Result": "No"
-                }
-            ],
             "Initial Clusters": {
-                "City G": "Cluster 7",
-                "City H": "Cluster 8",
-                "City E": "Cluster 5",
-                "City F": "Cluster 6",
-                "City K": "Cluster 11",
-                "City L": "Cluster 12",
-                "City I": "Cluster 9",
-                "City J": "Cluster 10",
-                "City O": "Cluster 15",
-                "City P": "Cluster 16",
-                "City M": "Cluster 13",
-                "City N": "Cluster 14",
-                "City S": "Cluster 19",
-                "City T": "Cluster 20",
-                "City Q": "Cluster 17",
-                "City R": "Cluster 18",
-                "City C": "Cluster 3",
-                "City D": "Cluster 4",
                 "City A": "Cluster 1",
                 "City B": "Cluster 2",
-                "City W": "Cluster 23",
-                "City AD": "Cluster 30",
-                "City X": "Cluster 24",
-                "City AE": "Cluster 31",
+                "City C": "Cluster 3",
+                "City D": "Cluster 4",
+                "City E": "Cluster 5",
+                "City F": "Cluster 6",
+                "City G": "Cluster 7",
+                "City H": "Cluster 8",
+                "City I": "Cluster 9",
+                "City J": "Cluster 10",
+                "City K": "Cluster 11",
+                "City L": "Cluster 12",
+                "City M": "Cluster 13",
+                "City N": "Cluster 14",
+                "City O": "Cluster 15",
+                "City P": "Cluster 16",
+                "City Q": "Cluster 17",
+                "City R": "Cluster 18",
+                "City S": "Cluster 19",
+                "City T": "Cluster 20",
                 "City U": "Cluster 21",
-                "City AF": "Cluster 32",
                 "City V": "Cluster 22",
-                "City AG": "Cluster 33",
-                "City AH": "Cluster 34",
-                "City AI": "Cluster 35",
+                "City W": "Cluster 23",
+                "City X": "Cluster 24",
                 "City Y": "Cluster 25",
-                "City AJ": "Cluster 36",
                 "City Z": "Cluster 26",
-                "City AK": "Cluster 37",
                 "City AA": "Cluster 27",
                 "City AB": "Cluster 28",
                 "City AC": "Cluster 29",
-                "City AT": "Cluster 46",
-                "City AU": "Cluster 47",
-                "City AV": "Cluster 48",
-                "City AW": "Cluster 49",
-                "City AX": "Cluster 50",
+                "City AD": "Cluster 30",
+                "City AE": "Cluster 31",
+                "City AF": "Cluster 32",
+                "City AG": "Cluster 33",
+                "City AH": "Cluster 34",
+                "City AI": "Cluster 35",
+                "City AJ": "Cluster 36",
+                "City AK": "Cluster 37",
                 "City AL": "Cluster 38",
                 "City AM": "Cluster 39",
                 "City AN": "Cluster 40",
@@ -1060,70 +1000,225 @@
                 "City AP": "Cluster 42",
                 "City AQ": "Cluster 43",
                 "City AR": "Cluster 44",
-                "City AS": "Cluster 45"
+                "City AS": "Cluster 45",
+                "City AT": "Cluster 46",
+                "City AU": "Cluster 47",
+                "City AV": "Cluster 48",
+                "City AW": "Cluster 49",
+                "City AX": "Cluster 50"
             },
             "Merging Steps": [
                 {
                     "Action": "Merge",
                     "Cities": [
-                        "City A",
-                        "City B"
+                        "City C",
+                        "City H"
                     ],
-                    "Cluster After Merge": "Cluster 1"
+                    "Cluster After Merge": "Cluster City C"
+                },
+                {
+                    "Action": "Merge",
+                    "Cities": [
+                        "City C",
+                        "City K"
+                    ],
+                    "Cluster After Merge": "Cluster City C"
+                },
+                {
+                    "Action": "Merge",
+                    "Cities": [
+                        "City C",
+                        "City N"
+                    ],
+                    "Cluster After Merge": "Cluster City C"
+                },
+                {
+                    "Action": "Merge",
+                    "Cities": [
+                        "City F",
+                        "City I"
+                    ],
+                    "Cluster After Merge": "Cluster City F"
+                },
+                {
+                    "Action": "Merge",
+                    "Cities": [
+                        "City F",
+                        "City L"
+                    ],
+                    "Cluster After Merge": "Cluster City F"
+                },
+                {
+                    "Action": "Merge",
+                    "Cities": [
+                        "City F",
+                        "City Q"
+                    ],
+                    "Cluster After Merge": "Cluster City F"
+                },
+                {
+                    "Action": "Merge",
+                    "Cities": [
+                        "City H",
+                        "City K"
+                    ],
+                    "Cluster After Merge": "Cluster City C"
+                },
+                {
+                    "Action": "Merge",
+                    "Cities": [
+                        "City H",
+                        "City N"
+                    ],
+                    "Cluster After Merge": "Cluster City C"
+                },
+                {
+                    "Action": "Merge",
+                    "Cities": [
+                        "City I",
+                        "City L"
+                    ],
+                    "Cluster After Merge": "Cluster City F"
+                },
+                {
+                    "Action": "Merge",
+                    "Cities": [
+                        "City I",
+                        "City Q"
+                    ],
+                    "Cluster After Merge": "Cluster City F"
+                },
+                {
+                    "Action": "Merge",
+                    "Cities": [
+                        "City K",
+                        "City N"
+                    ],
+                    "Cluster After Merge": "Cluster City C"
+                },
+                {
+                    "Action": "Merge",
+                    "Cities": [
+                        "City L",
+                        "City Q"
+                    ],
+                    "Cluster After Merge": "Cluster City F"
+                },
+                {
+                    "Action": "Merge",
+                    "Cities": [
+                        "City U",
+                        "City W"
+                    ],
+                    "Cluster After Merge": "Cluster City U"
+                },
+                {
+                    "Action": "Merge",
+                    "Cities": [
+                        "City U",
+                        "City X"
+                    ],
+                    "Cluster After Merge": "Cluster City U"
+                },
+                {
+                    "Action": "Merge",
+                    "Cities": [
+                        "City W",
+                        "City X"
+                    ],
+                    "Cluster After Merge": "Cluster City U"
+                },
+                {
+                    "Action": "Merge",
+                    "Cities": [
+                        "City AA",
+                        "City AD"
+                    ],
+                    "Cluster After Merge": "Cluster City AA"
+                },
+                {
+                    "Action": "Merge",
+                    "Cities": [
+                        "City AL",
+                        "City AO"
+                    ],
+                    "Cluster After Merge": "Cluster City AL"
+                },
+                {
+                    "Action": "Merge",
+                    "Cities": [
+                        "City AM",
+                        "City AP"
+                    ],
+                    "Cluster After Merge": "Cluster City AM"
                 }
             ],
             "Cluster Membership After Merging": {
-                "City G": "Cluster City G",
-                "City H": "Cluster City H",
-                "City E": "Cluster City E",
-                "City F": "Cluster City F",
-                "City K": "Cluster City K",
-                "City L": "Cluster City L",
-                "City I": "Cluster City I",
-                "City J": "Cluster City J",
-                "City O": "Cluster City O",
-                "City P": "Cluster City P",
-                "City M": "Cluster City M",
-                "City N": "Cluster City N",
-                "City S": "Cluster City S",
-                "City T": "Cluster City T",
-                "City Q": "Cluster City Q",
-                "City R": "Cluster City R",
-                "City C": "Cluster City C",
-                "City D": "Cluster City D",
-                "City A": "Cluster City A",
-                "City B": "Cluster City A",
-                "City W": "Cluster City W",
-                "City AD": "Cluster City AD",
-                "City X": "Cluster City X",
-                "City AE": "Cluster City AE",
-                "City U": "Cluster City U",
-                "City AF": "Cluster City AF",
-                "City V": "Cluster City V",
-                "City AG": "Cluster City AG",
-                "City AH": "Cluster City AH",
-                "City AI": "Cluster City AI",
-                "City Y": "Cluster City Y",
-                "City AJ": "Cluster City AJ",
-                "City Z": "Cluster City Z",
-                "City AK": "Cluster City AK",
-                "City AA": "Cluster City AA",
-                "City AB": "Cluster City AB",
-                "City AC": "Cluster City AC",
-                "City AT": "Cluster City AT",
-                "City AU": "Cluster City AU",
-                "City AV": "Cluster City AV",
-                "City AW": "Cluster City AW",
-                "City AX": "Cluster City AX",
-                "City AL": "Cluster City AL",
-                "City AM": "Cluster City AM",
-                "City AN": "Cluster City AN",
-                "City AO": "Cluster City AO",
-                "City AP": "Cluster City AP",
-                "City AQ": "Cluster City AQ",
-                "City AR": "Cluster City AR",
-                "City AS": "Cluster City AS"
-            }
+                "City 1": "Cluster 1",
+                "City 2": "Cluster 2",
+                "City 3": "Cluster 3",
+                "City 4": "Cluster 4",
+                "City 5": "Cluster 5",
+                "City 6": "Cluster 6",
+                "City 7": "Cluster 7",
+                "City 8": "Cluster 3",
+                "City 9": "Cluster 6",
+                "City 10": "Cluster 10",
+                "City 11": "Cluster 3",
+                "City 12": "Cluster 6",
+                "City 13": "Cluster 13",
+                "City 14": "Cluster 3",
+                "City 15": "Cluster 15",
+                "City 16": "Cluster 16",
+                "City 17": "Cluster 6",
+                "City 18": "Cluster 18",
+                "City 19": "Cluster 19",
+                "City 20": "Cluster 20",
+                "City 21": "Cluster 21",
+                "City 22": "Cluster 22",
+                "City 23": "Cluster 21",
+                "City 24": "Cluster 21",
+                "City 25": "Cluster 25",
+                "City 26": "Cluster 26",
+                "City 27": "Cluster 27",
+                "City 28": "Cluster 28",
+                "City 29": "Cluster 29",
+                "City 30": "Cluster 27",
+                "City 31": "Cluster 31",
+                "City 32": "Cluster 32",
+                "City 33": "Cluster 33",
+                "City 34": "Cluster 34",
+                "City 35": "Cluster 35",
+                "City 36": "Cluster 36",
+                "City 37": "Cluster 37",
+                "City 38": "Cluster 38",
+                "City 39": "Cluster 39",
+                "City 40": "Cluster 40",
+                "City 41": "Cluster 38",
+                "City 42": "Cluster 39",
+                "City 43": "Cluster 43",
+                "City 44": "Cluster 44",
+                "City 45": "Cluster 45",
+                "City 46": "Cluster 46",
+                "City 47": "Cluster 47",
+                "City 48": "Cluster 48",
+                "City 49": "Cluster 49",
+                "City 50": "Cluster 50"
+            },
+            "Queries": [
+                {
+                    "Query": "Are City A and City C in the same cluster?",
+                    "Result": "No"
+                },
+                {
+                    "Query": "Are City A and City B in the same cluster?",
+                    "Result": "No"
+                },
+                {
+                    "Query": "Are City B and City C in the same cluster?",
+                    "Result": "No"
+                }
+            ]
         }
     }
 }

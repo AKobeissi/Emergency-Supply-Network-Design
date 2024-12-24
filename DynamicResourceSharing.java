@@ -1,167 +1,136 @@
-import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class DynamicResourceSharing {
-    private Map<String, String> parent;
-    private Map<String, Integer> rank;
     private List<City> cities;
+    private Map<String, String> parent; // Union-Find Parent Map
+    private Map<String, Integer> rank; // Union-Find Rank Map
 
     public DynamicResourceSharing(List<City> cities) {
         this.cities = cities;
         this.parent = new HashMap<>();
         this.rank = new HashMap<>();
-        initializeSets();
-    }
 
-    private void initializeSets() {
+        // Initialize Union-Find structures
         for (City city : cities) {
             parent.put(city.getName(), city.getName());
             rank.put(city.getName(), 0);
         }
     }
 
-    private String find(String cityName) {
-        if (parent.get(cityName).equals(cityName)) {
-            return cityName;
-        }
-        String root = find(parent.get(cityName));
-        parent.put(cityName, root);
-        return root;
-    }
+    // Union operation with Union by Rank
+    // Union operation with Union by Rank and Path Compression
+public void union(List<String> cityNames) {
+    for (int i = 0; i < cityNames.size(); i++) {
+        for (int j = i + 1; j < cityNames.size(); j++) {
+            String city1 = cityNames.get(i);
+            String city2 = cityNames.get(j);
 
-    public void union(String city1Name, String city2Name) {
-        String root1 = find(city1Name);
-        String root2 = find(city2Name);
-        
-        if (!root1.equals(root2)) {
-            if (rank.get(root1) < rank.get(root2)) {
-                parent.put(root1, root2);
-            } else if (rank.get(root1) > rank.get(root2)) {
-                parent.put(root2, root1);
+            // Get allocated warehouses for both cities
+            Set<Integer> warehousesCity1 = cities.stream()
+                .filter(c -> c.getName().equals(city1))
+                .findFirst()
+                .get()
+                .getAllocatedWarehouses();
+
+            Set<Integer> warehousesCity2 = cities.stream()
+                .filter(c -> c.getName().equals(city2))
+                .findFirst()
+                .get()
+                .getAllocatedWarehouses();
+
+            // Check if both cities have the exact same set of warehouses
+            if (warehousesCity1.equals(warehousesCity2)) {
+                String root1 = find(city1);
+                String root2 = find(city2);
+
+                if (!root1.equals(root2)) {
+                    // Union by Rank
+                    if (rank.get(root1) > rank.get(root2)) {
+                        parent.put(root2, root1);
+                        System.out.printf("Merged %s into %s (by rank)\n", city2, city1);
+                    } else if (rank.get(root1) < rank.get(root2)) {
+                        parent.put(root1, root2);
+                        System.out.printf("Merged %s into %s (by rank)\n", city1, city2);
+                    } else {
+                        parent.put(root2, root1);
+                        rank.put(root1, rank.get(root1) + 1);
+                        System.out.printf("Merged %s into %s (equal rank, incrementing rank)\n", city2, city1);
+                    }
+                }
             } else {
-                parent.put(root2, root1);
-                rank.put(root1, rank.get(root1) + 1);
+                System.out.printf("No merge: %s and %s do not share identical resources.\n", city1, city2);
             }
         }
     }
-    
-    private Map<String, Object> createQuery(String city1, String city2) {
-        Map<String, Object> query = new HashMap<>();
-        String queryText = String.format("Query: Are %s and %s in the same cluster?", city1, city2);
-        String result = find(city1).equals(find(city2)) ? "Yes" : "No";
-        
-        query.put("Query", queryText);
-        query.put("Result", result);
-        return query;
+}
+
+
+    // Find operation with Path Compression
+    public String find(String city) {
+        if (!city.equals(parent.get(city))) {
+            parent.put(city, find(parent.get(city))); // Path compression
+        }
+        return parent.get(city);
     }
 
-    /*public Map<String, Object> processResourceSharing() {
-        Map<String, Object> result = new HashMap<>();
-        
-        System.out.println("Task 4: Dynamic Resource Sharing Among Cities");
-        System.out.println("Output:");
-        System.out.println("Initial Clusters:");
-        
-        // Initial clusters
-        Map<String, String> initialClusters = new HashMap<>();
-        for (City city : cities) {
-            String clusterNum = String.valueOf(city.getId());
-            System.out.printf("%s belongs to cluster: %s\n", city.getName(), clusterNum);
-            initialClusters.put(city.getName(), "Cluster " + clusterNum);
-        }
-        
-        // Merging steps
-        List<Map<String, Object>> mergingSteps = new ArrayList<>();
-        if (cities.size() >= 2) {
-            System.out.println("\nMerging clusters of City 1 and City 2...");
-            
-            Map<String, Object> mergeStep = new HashMap<>();
-            mergeStep.put("Action", "Merge");
-            List<String> mergedCities = Arrays.asList(
-                cities.get(0).getName(), 
-                cities.get(1).getName()
-            );
-            mergeStep.put("Cities", mergedCities);
-            mergeStep.put("Cluster After Merge", "Cluster 1");
-            mergingSteps.add(mergeStep);
-            union(cities.get(0).getName(), cities.get(1).getName());
-            
-            for (City city : cities) {
-                System.out.printf("%s belongs to cluster: %s\n", 
-                    city.getName(), find(city.getName()).equals(find(cities.get(0).getName())) ? "1" : "3");
-            }
-        }
-        
-        // Process queries
-        System.out.println();
-        List<Map<String, Object>> queries = new ArrayList<>();
-        if (cities.size() >= 3) {
-            String[][] queryPairs = {
-                {cities.get(0).getName(), cities.get(2).getName()},
-                {cities.get(0).getName(), cities.get(1).getName()},
-                {cities.get(1).getName(), cities.get(2).getName()}
-            };
-            
-            for (String[] pair : queryPairs) {
-                Map<String, Object> query = createQuery(pair[0], pair[1]);
-                System.out.printf("%s\n%s\n", query.get("Query"), query.get("Result"));
-                queries.add(query);
-            }
-        }
-        
-        Map<String, Object> sharing = new HashMap<>();
-        sharing.put("Initial Clusters", initialClusters);
-        sharing.put("Merging Steps", mergingSteps);
-        sharing.put("Queries", queries);
-        
-        result.put("Dynamic Resource Sharing", sharing);
-        return result;
-    }*/
+    // Process Resource Sharing
     public Map<String, Object> processResourceSharing() {
-        Map<String, Object> result = new HashMap<>();
-        
+        Map<String, Object> result = new LinkedHashMap<>();
         System.out.println("Task 4: Dynamic Resource Sharing Among Cities");
         System.out.println("Output:");
-        System.out.println("Initial Clusters:");
-        
-        // Initial clusters
-        Map<String, String> initialClusters = new HashMap<>();
-        for (City city : cities) {
-            String clusterNum = String.valueOf(city.getId());
-            System.out.printf("%s belongs to cluster: %s\n", city.getName(), clusterNum);
-            initialClusters.put(city.getName(), "Cluster " + clusterNum);
-        }
-        
-        // Merging steps
-        List<Map<String, Object>> mergingSteps = new ArrayList<>();
-        if (cities.size() >= 2) {
-            System.out.println("\nMerging clusters of City 1 and City 2...");
-            
-            Map<String, Object> mergeStep = new HashMap<>();
+
+        // Step 1: Initial Clusters
+Map<String, String> initialClusters = new LinkedHashMap<>();
+for (City city : cities) {
+    initialClusters.put(city.getName(), "Cluster " + city.getId());
+    System.out.printf("City %s belongs to Cluster %d\n", city.getName(), city.getId());
+}
+
+// Step 2: Perform Union Based on Shared Resources
+List<String> cityNames = new ArrayList<>();
+for (City city : cities) {
+    cityNames.add(city.getName());
+}
+union(cityNames);
+
+// Step 3: Merging Steps
+List<Map<String, Object>> mergingSteps = new ArrayList<>();
+for (int i = 0; i < cities.size(); i++) {
+    for (int j = i + 1; j < cities.size(); j++) {
+        String city1 = cities.get(i).getName();
+        String city2 = cities.get(j).getName();
+
+        if (find(city1).equals(find(city2))) {
+            Map<String, Object> mergeStep = new LinkedHashMap<>();
             mergeStep.put("Action", "Merge");
-            List<String> mergedCities = Arrays.asList(
-                cities.get(0).getName(), 
-                cities.get(1).getName()
-            );
-            mergeStep.put("Cities", mergedCities);
-            mergeStep.put("Cluster After Merge", "Cluster 1");
+            mergeStep.put("Cities", Arrays.asList(city1, city2));
+            mergeStep.put("Cluster After Merge", "Cluster " + find(city1));
             mergingSteps.add(mergeStep);
-            union(cities.get(0).getName(), cities.get(1).getName());
+
+            System.out.printf("Merged City %s into City %s (Cluster: %s)\n", city2, city1, "Cluster " + find(city1));
+        } else {
+            System.out.printf("No merge: City %s and City %s do not share identical resources.\n", city1, city2);
         }
-        
-        // Cluster Membership After Merging
-        Map<String, String> clusterMembershipAfterMerging = new HashMap<>();
-        for (City city : cities) {
-            String cluster = find(city.getName());
-            System.out.printf("%s belongs to cluster: %s\n", city.getName(), cluster);
-            clusterMembershipAfterMerging.put(city.getName(), "Cluster " + cluster);
-        }
-        
-        // Process queries
-        System.out.println();
+    }
+}
+
+// Step 4: Final Cluster Membership
+Map<String, String> clusterMembershipAfterMerging = new LinkedHashMap<>();
+for (City city : cities) {
+    String clusterLeader = find(city.getName());
+    int clusterId = cities.stream()
+        .filter(c -> c.getName().equals(clusterLeader))
+        .findFirst()
+        .map(City::getId)
+        .orElse(-1); // Fallback if not found
+
+    clusterMembershipAfterMerging.put("City " + city.getId(), "Cluster " + clusterId);
+    System.out.printf("City %d belongs to Cluster %d\n", city.getId(), clusterId);
+}
+
+
+
+        // Step 5: Queries
         List<Map<String, Object>> queries = new ArrayList<>();
         if (cities.size() >= 3) {
             String[][] queryPairs = {
@@ -169,23 +138,28 @@ public class DynamicResourceSharing {
                 {cities.get(0).getName(), cities.get(1).getName()},
                 {cities.get(1).getName(), cities.get(2).getName()}
             };
-            
+
             for (String[] pair : queryPairs) {
                 Map<String, Object> query = createQuery(pair[0], pair[1]);
-                System.out.printf("%s\n%s\n", query.get("Query"), query.get("Result"));
                 queries.add(query);
             }
         }
-        
-        // Add to result map
-        Map<String, Object> sharing = new HashMap<>();
+
+        // Step 6: Prepare Final JSON Output
+        Map<String, Object> sharing = new LinkedHashMap<>();
         sharing.put("Initial Clusters", initialClusters);
         sharing.put("Merging Steps", mergingSteps);
         sharing.put("Cluster Membership After Merging", clusterMembershipAfterMerging);
         sharing.put("Queries", queries);
-        
+
         result.put("Dynamic Resource Sharing", sharing);
         return result;
     }
-    
+
+    private Map<String, Object> createQuery(String city1, String city2) {
+        Map<String, Object> query = new LinkedHashMap<>();
+        query.put("Query", "Are " + city1 + " and " + city2 + " in the same cluster?");
+        query.put("Result", find(city1).equals(find(city2)) ? "Yes" : "No");
+        return query;
+    }
 }

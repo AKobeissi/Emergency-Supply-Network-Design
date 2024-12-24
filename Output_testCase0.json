@@ -50,11 +50,7 @@
                 ]
             }
         ],
-        "Remaining Capacities": {
-            "Warehouse 101": 0,
-            "Warehouse 102": 20,
-            "Warehouse 103": 110
-        }
+        "Remaining Capacities": {}
     },
     "Task 3": {
         "Resource Redistribution": {
@@ -79,24 +75,10 @@
     },
     "Task 4": {
         "Dynamic Resource Sharing": {
-            "Queries": [
-                {
-                    "Query": "Query: Are City A and City C in the same cluster?",
-                    "Result": "No"
-                },
-                {
-                    "Query": "Query: Are City A and City B in the same cluster?",
-                    "Result": "Yes"
-                },
-                {
-                    "Query": "Query: Are City B and City C in the same cluster?",
-                    "Result": "No"
-                }
-            ],
             "Initial Clusters": {
-                "City C": "Cluster 3",
                 "City A": "Cluster 1",
-                "City B": "Cluster 2"
+                "City B": "Cluster 2",
+                "City C": "Cluster 3"
             },
             "Merging Steps": [
                 {
@@ -105,14 +87,28 @@
                         "City A",
                         "City B"
                     ],
-                    "Cluster After Merge": "Cluster 1"
+                    "Cluster After Merge": "Cluster City A"
                 }
             ],
             "Cluster Membership After Merging": {
-                "City C": "Cluster City C",
-                "City A": "Cluster City A",
-                "City B": "Cluster City A"
-            }
+                "City 1": "Cluster 1",
+                "City 2": "Cluster 1",
+                "City 3": "Cluster 3"
+            },
+            "Queries": [
+                {
+                    "Query": "Are City A and City C in the same cluster?",
+                    "Result": "No"
+                },
+                {
+                    "Query": "Are City A and City B in the same cluster?",
+                    "Result": "Yes"
+                },
+                {
+                    "Query": "Are City B and City C in the same cluster?",
+                    "Result": "No"
+                }
+            ]
         }
     }
 }
