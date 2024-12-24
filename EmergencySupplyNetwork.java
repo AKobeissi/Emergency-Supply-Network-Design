@@ -2,10 +2,11 @@
 import java.util.*;
 
 public class EmergencySupplyNetwork {
-    private List<City> cities;
-    private List<Warehouse> warehouses;
-    private double[][] costMatrix;
-
+    private List<City> cities;    // List of cities that require resources 
+    private List<Warehouse> warehouses;   // List of warehouses supplying resources
+    private double[][] costMatrix;   // Cost matrix for transport costs between cities and warehouses
+    
+    // Constructor: Initializes cities and warehouses, and calculates the cost matrix
     public EmergencySupplyNetwork(List<City> cities, List<Warehouse> warehouses) {
         this.cities = cities;
         this.warehouses = warehouses;
@@ -144,103 +145,4 @@ public class EmergencySupplyNetwork {
     
         return result;
     }
-    
-    
-    
-    
 }
-//    public Map<String, Object> allocateResources() {
-//        Map<String, Object> result = new HashMap<>();
-//        List<Map<String, Object>> allocationResults = new ArrayList<>();
-//        Map<Integer, Integer> remainingCapacities = new HashMap<>();
-//
-//        // Initialize remaining capacities
-//        for (Warehouse w : warehouses) {
-//            remainingCapacities.put(w.getId(), w.getCapacity());
-//        }
-//
-//        // Sort cities by priority
-//        List<City> sortedCities = new ArrayList<>(cities);
-//        sortedCities.sort((c1, c2) -> {
-//            if (c1.getPriority() == c2.getPriority()) return 0;
-//            if (c1.getPriority() == City.Priority.HIGH) return -1;
-//            if (c2.getPriority() == City.Priority.HIGH) return 1;
-//            if (c1.getPriority() == City.Priority.MEDIUM) return -1;
-//            return 1;
-//        });
-//
-//        // Allocate resources
-//        for (City city : sortedCities) {
-//            Map<String, Object> allocation = new HashMap<>();
-//            allocation.put("City", city.getName());
-//            allocation.put("Priority", city.getPriority().toString());
-//
-//            // Find best warehouse with available capacity
-//            List<Map<String, Object>> allocatedUnits = new ArrayList<>();
-//            int remainingDemand = city.getDemand();
-//            
-//            while (remainingDemand > 0) {
-//                int bestWarehouseIndex = -1;
-//                double bestCost = Double.MAX_VALUE;
-//                
-//                for (int i = 0; i < warehouses.size(); i++) {
-//                    Warehouse w = warehouses.get(i);
-//                    if (remainingCapacities.get(w.getId()) > 0 && 
-//                        costMatrix[cities.indexOf(city)][i] < bestCost) {
-//                        bestWarehouseIndex = i;
-//                        bestCost = costMatrix[cities.indexOf(city)][i];
-//                    }
-//                }
-//                
-//                if (bestWarehouseIndex == -1) break;
-//                
-//                Warehouse bestWarehouse = warehouses.get(bestWarehouseIndex);
-//                int availableCapacity = remainingCapacities.get(bestWarehouse.getId());
-//                int allocatedAmount = Math.min(availableCapacity, remainingDemand);
-//                
-//                Map<String, Object> units = new HashMap<>();
-//                units.put("Units", allocatedAmount);
-//                units.put("Warehouse", bestWarehouse.getName());
-//                allocatedUnits.add(units);
-//                
-//                remainingCapacities.put(bestWarehouse.getId(), 
-//                    availableCapacity - allocatedAmount);
-//                remainingDemand -= allocatedAmount;
-//            }
-//            
-//            if (allocatedUnits.size() == 1) {
-//                allocation.put("Allocated", allocatedUnits.get(0).get("Units"));
-//                allocation.put("Warehouse", allocatedUnits.get(0).get("Warehouse"));
-//            } else {
-//                allocation.put("Allocated", allocatedUnits);
-//            }
-//            
-//            allocationResults.add(allocation);
-//        }
-//
-//        // Prepare cost matrix for output
-//        List<Map<String, Object>> costMatrixOutput = new ArrayList<>();
-//        for (int i = 0; i < cities.size(); i++) {
-//            Map<String, Object> row = new HashMap<>();
-//            row.put("City", cities.get(i).getName());
-//            for (int j = 0; j < warehouses.size(); j++) {
-//                row.put("Warehouse " + warehouses.get(j).getId(), 
-//                    String.format("%.2f", costMatrix[i][j]));
-//            }
-//            costMatrixOutput.add(row);
-//        }
-//
-//        Map<String, Object> graphRepresentation = new HashMap<>();
-//        graphRepresentation.put("Cost Matrix", costMatrixOutput);
-//
-//        result.put("Graph Representation", graphRepresentation);
-//        result.put("Resource Allocation", allocationResults);
-//        result.put("Remaining Capacities", remainingCapacities);
-//
-//        return result;
-//    }
-//
-//    public double[][] getCostMatrix() {
-//        return costMatrix;
-//    }
-//}

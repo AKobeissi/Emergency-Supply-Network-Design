@@ -1,4 +1,4 @@
-// NetworkApp.java - continued from previous implementation
+// NetworkApp.java - Main application for processing emergency supply network test cases
 import java.io.*;
 import java.util.*;
 
@@ -8,36 +8,10 @@ public class NetworkApp {
         processTestCase("TestCase1.txt", "Output_testCase1.json");
         processTestCase("TestCase2.txt", "Output_testCase2.json");
     }
-
+    
+    // Processes a single test case: Parses input, performs tasks, and writes JSON output
     public static void processTestCase(String inputFile, String outputFile) {
         try {
-            /*List<City> cities = new ArrayList<>();
-            List<Warehouse> warehouses = new ArrayList<>();
-            parseInputFile(inputFile, cities, warehouses);
-    
-            // Pass the same warehouse reference to both classes
-            EmergencySupplyNetwork network = new EmergencySupplyNetwork(cities, warehouses);
-            ResourceRedistribution redistribution = new ResourceRedistribution(warehouses);
-            DynamicResourceSharing sharing = new DynamicResourceSharing(cities);
-    
-            Map<String, Object> result = new HashMap<>();
-            
-            // Task 2: Resource Allocation
-            Map<String, Object> networkResult = network.allocateResources();
-            result.put("Task 1 and 2", networkResult);
-            
-    
-            // Task 3: Resource Redistribution
-            Map<String, Object> redistributionResult = redistribution.redistributeResources();
-            result.put("Task 3", redistributionResult);
-    
-            // Task 4: Dynamic Resource Sharing
-            Map<String, Object> sharingResult = sharing.processResourceSharing();
-            result.put("Task 4", sharingResult);
-    
-            // Write output to JSON file
-            writeJsonOutput(result, outputFile);*/
-
             List<City> cities = new ArrayList<>();
             List<Warehouse> warehouses = new ArrayList<>();
             parseInputFile(inputFile, cities, warehouses);
@@ -236,51 +210,6 @@ public class NetworkApp {
         java.util.regex.Matcher matcher = java.util.regex.Pattern.compile(pattern).matcher(input);
         return matcher.find() ? matcher.group(group) : "";
     }
-//    private static void parseCityLine(String line, List<City> cities) {
-//        try {
-//            String[] parts = line.split(",");
-//            String name = parts[0].split(":")[0].trim();
-//            int id = Integer.parseInt(parts[0].split("=")[1].trim());
-//            
-//            String coordsStr = parts[1].split("=")[1].trim();
-//            double x = Double.parseDouble(coordsStr.substring(1, coordsStr.indexOf(",")).trim());
-//            double y = Double.parseDouble(coordsStr.substring(coordsStr.indexOf(",") + 1, coordsStr.indexOf(")")).trim());
-//            
-//            int demand = Integer.parseInt(parts[2].split("=")[1].trim().split(" ")[0]);
-//            
-//            String priorityStr = parts[3].split("=")[1].trim();
-//            City.Priority priority;
-//            if (priorityStr.equals("High")) {
-//                priority = City.Priority.HIGH;
-//            } else if (priorityStr.equals("Medium")) {
-//                priority = City.Priority.MEDIUM;
-//            } else {
-//                priority = City.Priority.LOW;
-//            }
-//
-//            cities.add(new City(name, id, x, y, demand, priority));
-//        } catch (Exception e) {
-//            System.err.println("Error parsing city line: " + line);
-//        }
-//    }
-//
-//    private static void parseWarehouseLine(String line, List<Warehouse> warehouses) {
-//        try {
-//            String[] parts = line.split(",");
-//            String name = parts[0].split(":")[0].trim();
-//            int id = Integer.parseInt(parts[0].split("=")[1].trim());
-//            
-//            String coordsStr = parts[1].split("=")[1].trim();
-//            double x = Double.parseDouble(coordsStr.substring(1, coordsStr.indexOf(",")).trim());
-//            double y = Double.parseDouble(coordsStr.substring(coordsStr.indexOf(",") + 1, coordsStr.indexOf(")")).trim());
-//            
-//            int capacity = Integer.parseInt(parts[2].split("=")[1].trim().split(" ")[0]);
-//
-//            warehouses.add(new Warehouse(name, id, x, y, capacity));
-//        } catch (Exception e) {
-//            System.err.println("Error parsing warehouse line: " + line);
-//        }
-//    }
 
     private static void writeJsonOutput(Map<String, Object> data, String filename) throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
