@@ -11,7 +11,7 @@ public class NetworkApp {
 
     public static void processTestCase(String inputFile, String outputFile) {
         try {
-            List<City> cities = new ArrayList<>();
+            /*List<City> cities = new ArrayList<>();
             List<Warehouse> warehouses = new ArrayList<>();
             parseInputFile(inputFile, cities, warehouses);
     
@@ -25,6 +25,7 @@ public class NetworkApp {
             // Task 2: Resource Allocation
             Map<String, Object> networkResult = network.allocateResources();
             result.put("Task 1 and 2", networkResult);
+            
     
             // Task 3: Resource Redistribution
             Map<String, Object> redistributionResult = redistribution.redistributeResources();
@@ -35,7 +36,97 @@ public class NetworkApp {
             result.put("Task 4", sharingResult);
     
             // Write output to JSON file
+            writeJsonOutput(result, outputFile);*/
+
+            List<City> cities = new ArrayList<>();
+            List<Warehouse> warehouses = new ArrayList<>();
+            parseInputFile(inputFile, cities, warehouses);
+
+            EmergencySupplyNetwork network = new EmergencySupplyNetwork(cities, warehouses);
+            ResourceRedistribution redistribution = new ResourceRedistribution(warehouses);
+            DynamicResourceSharing sharing = new DynamicResourceSharing(cities);
+
+            Map<String, Object> result = new LinkedHashMap<>();
+
+            // Task 1 and 2: Resource Allocation
+            Map<String, Object> networkResult = network.allocateResources();
+            Map<String, Object> task1And2 = new LinkedHashMap<>();
+            
+            // Graph Representation
+            Map<String, Object> graphRepresentation = new LinkedHashMap<>();
+            List<Map<String, Object>> rawMatrix = (List<Map<String, Object>>) networkResult.get("Graph Representation");
+            List<Map<String, Object>> costMatrix = new ArrayList<>();
+            for (Map<String, Object> row : rawMatrix) {
+                Map<String, Object> formattedRow = new LinkedHashMap<>();
+                formattedRow.put("City", "City " + row.get("City ID"));
+                formattedRow.put("Warehouse 101", Double.parseDouble(row.get("Warehouse 101").toString()));
+                formattedRow.put("Warehouse 102", Double.parseDouble(row.get("Warehouse 102").toString()));
+                formattedRow.put("Warehouse 103", Double.parseDouble(row.get("Warehouse 103").toString()));
+                costMatrix.add(formattedRow);
+            }
+            graphRepresentation.put("Cost Matrix", costMatrix);
+            task1And2.put("Graph Representation", graphRepresentation);
+
+            // Resource Allocation
+            List<Map<String, Object>> rawAllocations = (List<Map<String, Object>>) networkResult.get("Resource Allocation");
+            List<Map<String, Object>> formattedAllocations = new ArrayList<>();
+            for (Map<String, Object> allocation : rawAllocations) {
+                Map<String, Object> formatted = new LinkedHashMap<>();
+                formatted.put("City", "City " + allocation.get("City ID"));
+                formatted.put("Priority", allocation.get("Priority"));
+                List<Map<String, Object>> allocUnits = (List<Map<String, Object>>) allocation.get("Allocated");
+                if (allocUnits.size() == 1) {
+                    formatted.put("Allocated", allocUnits.get(0).get("Units"));
+                    formatted.put("Warehouse", "Warehouse " + allocUnits.get(0).get("Warehouse ID"));
+                } else {
+                    formatted.put("Allocated", allocUnits.stream().map(unit -> {
+                        Map<String, Object> unitMap = new LinkedHashMap<>();
+                        unitMap.put("Warehouse", "Warehouse " + unit.get("Warehouse ID"));
+                        unitMap.put("Units", unit.get("Units"));
+                        return unitMap;
+                    }).toList());
+                }
+                formattedAllocations.add(formatted);
+            }
+            task1And2.put("Resource Allocation", formattedAllocations);
+
+            // Remaining Capacities
+            Map<Integer, Integer> remainingCapacities = (Map<Integer, Integer>) networkResult.get("Remaining Capacities");
+            Map<String, Integer> formattedCapacities = new LinkedHashMap<>();
+            for (Map.Entry<Integer, Integer> entry : remainingCapacities.entrySet()) {
+                formattedCapacities.put("Warehouse " + entry.getKey(), entry.getValue());
+            }
+            task1And2.put("Remaining Capacities", formattedCapacities);
+            result.put("Task 1 and 2", task1And2);
+
+            // Task 3: Resource Redistribution
+            Map<String, Object> redistributionResult = redistribution.redistributeResources();
+            Map<String, Object> task3 = new LinkedHashMap<>();
+            List<Map<String, Object>> rawTransfers = (List<Map<String, Object>>) redistributionResult.get("Transfers");
+            List<Map<String, Object>> formattedTransfers = new ArrayList<>();
+            for (Map<String, Object> transfer : rawTransfers) {
+                Map<String, Object> formatted = new LinkedHashMap<>();
+                formatted.put("From", "Warehouse " + transfer.get("From Warehouse ID"));
+                formatted.put("To", "Warehouse " + transfer.get("To Warehouse ID"));
+                formatted.put("Units", transfer.get("Transferred Units"));
+                formattedTransfers.add(formatted);
+            }
+            task3.put("Transfers", formattedTransfers);
+
+            Map<String, Integer> finalLevels = (Map<String, Integer>) redistributionResult.get("Final Resource Levels");
+            Map<String, Integer> formattedLevels = new LinkedHashMap<>();
+            for (Map.Entry<String, Integer> entry : finalLevels.entrySet()) {
+                formattedLevels.put(entry.getKey().replace("Warehouse ID: ", "Warehouse "), entry.getValue());
+            }
+            task3.put("Final Resource Levels", formattedLevels);
+            result.put("Task 3", Map.of("Resource Redistribution", task3));
+
+            // Task 4: Dynamic Resource Sharing
+            Map<String, Object> sharingResult = sharing.processResourceSharing();
+            result.put("Task 4", sharingResult);
+            // Write to JSON
             writeJsonOutput(result, outputFile);
+
         } catch (IOException e) {
             System.err.println("Error processing test case: " + e.getMessage());
         }

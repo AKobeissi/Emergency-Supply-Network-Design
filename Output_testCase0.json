@@ -1,66 +1,81 @@
 {
     "Task 1 and 2": {
+        "Graph Representation": {
+            "Cost Matrix": [
+                {
+                    "City": "City 1",
+                    "Warehouse 101": 37.58,
+                    "Warehouse 102": 76.66,
+                    "Warehouse 103": 110.15
+                },
+                {
+                    "City": "City 2",
+                    "Warehouse 101": 27.86,
+                    "Warehouse 102": 61.77,
+                    "Warehouse 103": 95.29
+                },
+                {
+                    "City": "City 3",
+                    "Warehouse 101": 36.22,
+                    "Warehouse 102": 72.12,
+                    "Warehouse 103": 105.34
+                }
+            ]
+        },
         "Resource Allocation": [
             {
+                "City": "City 1",
                 "Priority": "HIGH",
-                "City ID": 1,
-                "Allocated": [
-                    {
-                        "Warehouse ID": 101,
-                        "Units": 50
-                    }
-                ]
+                "Allocated": 50,
+                "Warehouse": "Warehouse 101"
             },
             {
+                "City": "City 2",
                 "Priority": "MEDIUM",
-                "City ID": 2,
-                "Allocated": [
-                    {
-                        "Warehouse ID": 101,
-                        "Units": 30
-                    }
-                ]
+                "Allocated": 30,
+                "Warehouse": "Warehouse 101"
             },
             {
+                "City": "City 3",
                 "Priority": "LOW",
-                "City ID": 3,
                 "Allocated": [
                     {
-                        "Warehouse ID": 101,
+                        "Warehouse": "Warehouse 101",
                         "Units": 20
                     },
                     {
-                        "Warehouse ID": 102,
+                        "Warehouse": "Warehouse 102",
                         "Units": 30
                     }
                 ]
             }
         ],
         "Remaining Capacities": {
-            "101": 0,
-            "102": 20,
-            "103": 110
-        },
-        "Graph Representation": [
-            {
-                "City ID": 1,
-                "Warehouse 101": "37.58",
-                "Warehouse 102": "76.66",
-                "Warehouse 103": "110.15"
-            },
-            {
-                "City ID": 2,
-                "Warehouse 101": "27.86",
-                "Warehouse 102": "61.77",
-                "Warehouse 103": "95.29"
-            },
-            {
-                "City ID": 3,
-                "Warehouse 101": "36.22",
-                "Warehouse 102": "72.12",
-                "Warehouse 103": "105.34"
+            "Warehouse 101": 0,
+            "Warehouse 102": 20,
+            "Warehouse 103": 110
+        }
+    },
+    "Task 3": {
+        "Resource Redistribution": {
+            "Transfers": [
+                {
+                    "From": "Warehouse 103",
+                    "To": "Warehouse 101",
+                    "Units": 50
+                },
+                {
+                    "From": "Warehouse 103",
+                    "To": "Warehouse 102",
+                    "Units": 10
+                }
+            ],
+            "Final Resource Levels": {
+                "Warehouse 101": 50,
+                "Warehouse 102": 30,
+                "Warehouse 103": 50
             }
-        ]
+        }
     },
     "Task 4": {
         "Dynamic Resource Sharing": {
@@ -94,24 +109,5 @@
                 }
             ]
         }
-    },
-    "Task 3": {
-        "Final Resource Levels": {
-            "Warehouse ID: 101": 50,
-            "Warehouse ID: 102": 30,
-            "Warehouse ID: 103": 50
-        },
-        "Transfers": [
-            {
-                "To Warehouse ID": 101,
-                "From Warehouse ID": 103,
-                "Transferred Units": 50
-            },
-            {
-                "To Warehouse ID": 102,
-                "From Warehouse ID": 103,
-                "Transferred Units": 10
-            }
-        ]
     }
 }
