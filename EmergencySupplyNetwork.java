@@ -81,8 +81,8 @@ public class EmergencySupplyNetwork {
     
         // Step 4: Allocate resources dynamically
         for (City city : sortedCities) {
-            System.out.printf("Allocating resources for City ID: %d (Priority: %s, Demand: %d)\n", 
-                city.getId(), city.getPriority(), city.getDemand());
+            System.out.printf("Allocating resources for City ID: %d (Priority: %s)\n", 
+                city.getId(), city.getPriority());
     
             Map<String, Object> allocation = new HashMap<>();
             allocation.put("City ID", city.getId());
