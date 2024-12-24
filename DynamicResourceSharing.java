@@ -78,59 +78,68 @@ public void union(List<String> cityNames) {
         Map<String, Object> result = new LinkedHashMap<>();
         System.out.println("Task 4: Dynamic Resource Sharing Among Cities");
         System.out.println("Output:");
-
+    
         // Step 1: Initial Clusters
-Map<String, String> initialClusters = new LinkedHashMap<>();
-for (City city : cities) {
-    initialClusters.put(city.getName(), "Cluster " + city.getId());
-    System.out.printf("City %s belongs to Cluster %d\n", city.getName(), city.getId());
-}
-
-// Step 2: Perform Union Based on Shared Resources
-List<String> cityNames = new ArrayList<>();
-for (City city : cities) {
-    cityNames.add(city.getName());
-}
-union(cityNames);
-
-// Step 3: Merging Steps
-List<Map<String, Object>> mergingSteps = new ArrayList<>();
-for (int i = 0; i < cities.size(); i++) {
-    for (int j = i + 1; j < cities.size(); j++) {
-        String city1 = cities.get(i).getName();
-        String city2 = cities.get(j).getName();
-
-        if (find(city1).equals(find(city2))) {
-            Map<String, Object> mergeStep = new LinkedHashMap<>();
-            mergeStep.put("Action", "Merge");
-            mergeStep.put("Cities", Arrays.asList(city1, city2));
-            mergeStep.put("Cluster After Merge", "Cluster " + find(city1));
-            mergingSteps.add(mergeStep);
-
-            System.out.printf("Merged City %s into City %s (Cluster: %s)\n", city2, city1, "Cluster " + find(city1));
-        } else {
-            System.out.printf("No merge: City %s and City %s do not share identical resources.\n", city1, city2);
+        System.out.println("Initial Clusters:");
+        Map<String, String> initialClusters = new LinkedHashMap<>();
+        for (City city : cities) {
+            String cluster = "Cluster " + city.getId();
+            initialClusters.put(city.getName(), cluster);
+            System.out.printf("City %s belongs to cluster: %d\n", city.getName(), city.getId());
         }
-    }
-}
+    
+        // Step 2: Perform Union Based on Shared Resources
+        List<String> cityNames = new ArrayList<>();
+        for (City city : cities) {
+            cityNames.add(city.getName());
+        }
+        union(cityNames);
+    
+        // Step 3: Merging Steps
+        
+        System.out.println("\nMerging clusters of City 1 and City 2...");
+        List<Map<String, Object>> mergingSteps = new ArrayList<>();
+        for (int i = 0; i < cities.size(); i++) {
+            for (int j = i + 1; j < cities.size(); j++) {
+                String city1 = cities.get(i).getName();
+                String city2 = cities.get(j).getName();
 
-// Step 4: Final Cluster Membership
-Map<String, String> clusterMembershipAfterMerging = new LinkedHashMap<>();
-for (City city : cities) {
-    String clusterLeader = find(city.getName());
-    int clusterId = cities.stream()
-        .filter(c -> c.getName().equals(clusterLeader))
-        .findFirst()
-        .map(City::getId)
-        .orElse(-1); // Fallback if not found
+                if (find(city1).equals(find(city2))) {
+                    // Find the cluster leader and get its numeric ID
+                    String clusterLeader = find(city1);
+                    int clusterId = cities.stream()
+                        .filter(c -> c.getName().equals(clusterLeader))
+                        .findFirst()
+                        .map(City::getId)
+                        .orElse(-1);
 
-    clusterMembershipAfterMerging.put("City " + city.getId(), "Cluster " + clusterId);
-    System.out.printf("City %d belongs to Cluster %d\n", city.getId(), clusterId);
-}
+                    Map<String, Object> mergeStep = new LinkedHashMap<>();
+                    mergeStep.put("Action", "Merge");
+                    mergeStep.put("Cities", Arrays.asList(city1, city2));
+                    mergeStep.put("Cluster After Merge", "Cluster " + clusterId);
+                    mergingSteps.add(mergeStep);
+                }
+            }
+        }
 
-
-
+    
+        // Step 4: Final Cluster Membership
+        System.out.println("Final Cluster Membership:");
+        Map<String, String> clusterMembershipAfterMerging = new LinkedHashMap<>();
+        for (City city : cities) {
+            String clusterLeader = find(city.getName());
+            int clusterId = cities.stream()
+                .filter(c -> c.getName().equals(clusterLeader))
+                .findFirst()
+                .map(City::getId)
+                .orElse(-1);
+    
+            clusterMembershipAfterMerging.put(city.getName(), "Cluster " + clusterId);
+            System.out.printf("City %s belongs to cluster: %d\n", city.getName(), clusterId);
+        }
+    
         // Step 5: Queries
+        System.out.println("\nQueries:");
         List<Map<String, Object>> queries = new ArrayList<>();
         if (cities.size() >= 3) {
             String[][] queryPairs = {
@@ -138,20 +147,23 @@ for (City city : cities) {
                 {cities.get(0).getName(), cities.get(1).getName()},
                 {cities.get(1).getName(), cities.get(2).getName()}
             };
-
+    
             for (String[] pair : queryPairs) {
                 Map<String, Object> query = createQuery(pair[0], pair[1]);
                 queries.add(query);
+    
+                System.out.printf("Query: Are %s and %s in the same cluster?\n", pair[0], pair[1]);
+                System.out.printf("%s\n", query.get("Result"));
             }
         }
-
+    
         // Step 6: Prepare Final JSON Output
         Map<String, Object> sharing = new LinkedHashMap<>();
         sharing.put("Initial Clusters", initialClusters);
         sharing.put("Merging Steps", mergingSteps);
         sharing.put("Cluster Membership After Merging", clusterMembershipAfterMerging);
         sharing.put("Queries", queries);
-
+    
         result.put("Dynamic Resource Sharing", sharing);
         return result;
     }
@@ -162,4 +174,5 @@ for (City city : cities) {
         query.put("Result", find(city1).equals(find(city2)) ? "Yes" : "No");
         return query;
     }
+    
 }

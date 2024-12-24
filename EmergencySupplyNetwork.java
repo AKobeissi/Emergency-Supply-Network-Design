@@ -109,9 +109,12 @@ public class EmergencySupplyNetwork {
                     allocationStep.put("Units", allocatedAmount);
                     allocationStep.put("Warehouse ID", warehouse.getId());
                     allocatedUnits.add(allocationStep);
+                    city.addAllocatedWarehouse(warehouse.getId());
+
     
                     remainingDemand -= allocatedAmount;
                     warehouse.setCapacity(availableCapacity - allocatedAmount); // Update Warehouse directly
+                    remainingCapacities.put(warehouse.getId(), availableCapacity - allocatedAmount);
     
                     
                     city.addAllocatedWarehouse(warehouse.getId());

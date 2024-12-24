@@ -50,7 +50,10 @@
                 ]
             }
         ],
-        "Remaining Capacities": {}
+        "Remaining Capacities": {
+            "Warehouse 101": 0,
+            "Warehouse 102": 20
+        }
     },
     "Task 3": {
         "Resource Redistribution": {
@@ -87,13 +90,13 @@
                         "City A",
                         "City B"
                     ],
-                    "Cluster After Merge": "Cluster City A"
+                    "Cluster After Merge": "Cluster 1"
                 }
             ],
             "Cluster Membership After Merging": {
-                "City 1": "Cluster 1",
-                "City 2": "Cluster 1",
-                "City 3": "Cluster 3"
+                "City A": "Cluster 1",
+                "City B": "Cluster 1",
+                "City C": "Cluster 3"
             },
             "Queries": [
                 {

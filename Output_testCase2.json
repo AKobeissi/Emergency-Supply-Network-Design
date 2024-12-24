@@ -758,7 +758,36 @@
                 "Warehouse": "Warehouse 132"
             }
         ],
-        "Remaining Capacities": {}
+        "Remaining Capacities": {
+            "Warehouse 128": 45,
+            "Warehouse 129": 0,
+            "Warehouse 130": 0,
+            "Warehouse 131": 0,
+            "Warehouse 132": 90,
+            "Warehouse 133": 0,
+            "Warehouse 135": 0,
+            "Warehouse 136": 75,
+            "Warehouse 101": 0,
+            "Warehouse 102": 0,
+            "Warehouse 103": 95,
+            "Warehouse 104": 0,
+            "Warehouse 106": 0,
+            "Warehouse 107": 0,
+            "Warehouse 108": 0,
+            "Warehouse 109": 0,
+            "Warehouse 111": 0,
+            "Warehouse 112": 125,
+            "Warehouse 114": 20,
+            "Warehouse 115": 0,
+            "Warehouse 116": 0,
+            "Warehouse 117": 0,
+            "Warehouse 118": 0,
+            "Warehouse 121": 95,
+            "Warehouse 122": 0,
+            "Warehouse 124": 0,
+            "Warehouse 126": 0,
+            "Warehouse 127": 0
+        }
     },
     "Task 3": {
         "Resource Redistribution": {
@@ -1014,7 +1043,7 @@
                         "City C",
                         "City H"
                     ],
-                    "Cluster After Merge": "Cluster City C"
+                    "Cluster After Merge": "Cluster 3"
                 },
                 {
                     "Action": "Merge",
@@ -1022,7 +1051,7 @@
                         "City C",
                         "City K"
                     ],
-                    "Cluster After Merge": "Cluster City C"
+                    "Cluster After Merge": "Cluster 3"
                 },
                 {
                     "Action": "Merge",
@@ -1030,7 +1059,7 @@
                         "City C",
                         "City N"
                     ],
-                    "Cluster After Merge": "Cluster City C"
+                    "Cluster After Merge": "Cluster 3"
                 },
                 {
                     "Action": "Merge",
@@ -1038,7 +1067,7 @@
                         "City F",
                         "City I"
                     ],
-                    "Cluster After Merge": "Cluster City F"
+                    "Cluster After Merge": "Cluster 6"
                 },
                 {
                     "Action": "Merge",
@@ -1046,7 +1075,7 @@
                         "City F",
                         "City L"
                     ],
-                    "Cluster After Merge": "Cluster City F"
+                    "Cluster After Merge": "Cluster 6"
                 },
                 {
                     "Action": "Merge",
@@ -1054,7 +1083,7 @@
                         "City F",
                         "City Q"
                     ],
-                    "Cluster After Merge": "Cluster City F"
+                    "Cluster After Merge": "Cluster 6"
                 },
                 {
                     "Action": "Merge",
@@ -1062,7 +1091,7 @@
                         "City H",
                         "City K"
                     ],
-                    "Cluster After Merge": "Cluster City C"
+                    "Cluster After Merge": "Cluster 3"
                 },
                 {
                     "Action": "Merge",
@@ -1070,7 +1099,7 @@
                         "City H",
                         "City N"
                     ],
-                    "Cluster After Merge": "Cluster City C"
+                    "Cluster After Merge": "Cluster 3"
                 },
                 {
                     "Action": "Merge",
@@ -1078,7 +1107,7 @@
                         "City I",
                         "City L"
                     ],
-                    "Cluster After Merge": "Cluster City F"
+                    "Cluster After Merge": "Cluster 6"
                 },
                 {
                     "Action": "Merge",
@@ -1086,7 +1115,7 @@
                         "City I",
                         "City Q"
                     ],
-                    "Cluster After Merge": "Cluster City F"
+                    "Cluster After Merge": "Cluster 6"
                 },
                 {
                     "Action": "Merge",
@@ -1094,7 +1123,7 @@
                         "City K",
                         "City N"
                     ],
-                    "Cluster After Merge": "Cluster City C"
+                    "Cluster After Merge": "Cluster 3"
                 },
                 {
                     "Action": "Merge",
@@ -1102,7 +1131,7 @@
                         "City L",
                         "City Q"
                     ],
-                    "Cluster After Merge": "Cluster City F"
+                    "Cluster After Merge": "Cluster 6"
                 },
                 {
                     "Action": "Merge",
@@ -1110,7 +1139,7 @@
                         "City U",
                         "City W"
                     ],
-                    "Cluster After Merge": "Cluster City U"
+                    "Cluster After Merge": "Cluster 21"
                 },
                 {
                     "Action": "Merge",
@@ -1118,7 +1147,7 @@
                         "City U",
                         "City X"
                     ],
-                    "Cluster After Merge": "Cluster City U"
+                    "Cluster After Merge": "Cluster 21"
                 },
                 {
                     "Action": "Merge",
@@ -1126,7 +1155,7 @@
                         "City W",
                         "City X"
                     ],
-                    "Cluster After Merge": "Cluster City U"
+                    "Cluster After Merge": "Cluster 21"
                 },
                 {
                     "Action": "Merge",
@@ -1134,7 +1163,7 @@
                         "City AA",
                         "City AD"
                     ],
-                    "Cluster After Merge": "Cluster City AA"
+                    "Cluster After Merge": "Cluster 27"
                 },
                 {
                     "Action": "Merge",
@@ -1142,7 +1171,7 @@
                         "City AL",
                         "City AO"
                     ],
-                    "Cluster After Merge": "Cluster City AL"
+                    "Cluster After Merge": "Cluster 38"
                 },
                 {
                     "Action": "Merge",
@@ -1150,60 +1179,60 @@
                         "City AM",
                         "City AP"
                     ],
-                    "Cluster After Merge": "Cluster City AM"
+                    "Cluster After Merge": "Cluster 39"
                 }
             ],
             "Cluster Membership After Merging": {
-                "City 1": "Cluster 1",
-                "City 2": "Cluster 2",
-                "City 3": "Cluster 3",
-                "City 4": "Cluster 4",
-                "City 5": "Cluster 5",
-                "City 6": "Cluster 6",
-                "City 7": "Cluster 7",
-                "City 8": "Cluster 3",
-                "City 9": "Cluster 6",
-                "City 10": "Cluster 10",
-                "City 11": "Cluster 3",
-                "City 12": "Cluster 6",
-                "City 13": "Cluster 13",
-                "City 14": "Cluster 3",
-                "City 15": "Cluster 15",
-                "City 16": "Cluster 16",
-                "City 17": "Cluster 6",
-                "City 18": "Cluster 18",
-                "City 19": "Cluster 19",
-                "City 20": "Cluster 20",
-                "City 21": "Cluster 21",
-                "City 22": "Cluster 22",
-                "City 23": "Cluster 21",
-                "City 24": "Cluster 21",
-                "City 25": "Cluster 25",
-                "City 26": "Cluster 26",
-                "City 27": "Cluster 27",
-                "City 28": "Cluster 28",
-                "City 29": "Cluster 29",
-                "City 30": "Cluster 27",
-                "City 31": "Cluster 31",
-                "City 32": "Cluster 32",
-                "City 33": "Cluster 33",
-                "City 34": "Cluster 34",
-                "City 35": "Cluster 35",
-                "City 36": "Cluster 36",
-                "City 37": "Cluster 37",
-                "City 38": "Cluster 38",
-                "City 39": "Cluster 39",
-                "City 40": "Cluster 40",
-                "City 41": "Cluster 38",
-                "City 42": "Cluster 39",
-                "City 43": "Cluster 43",
-                "City 44": "Cluster 44",
-                "City 45": "Cluster 45",
-                "City 46": "Cluster 46",
-                "City 47": "Cluster 47",
-                "City 48": "Cluster 48",
-                "City 49": "Cluster 49",
-                "City 50": "Cluster 50"
+                "City A": "Cluster 1",
+                "City B": "Cluster 2",
+                "City C": "Cluster 3",
+                "City D": "Cluster 4",
+                "City E": "Cluster 5",
+                "City F": "Cluster 6",
+                "City G": "Cluster 7",
+                "City H": "Cluster 3",
+                "City I": "Cluster 6",
+                "City J": "Cluster 10",
+                "City K": "Cluster 3",
+                "City L": "Cluster 6",
+                "City M": "Cluster 13",
+                "City N": "Cluster 3",
+                "City O": "Cluster 15",
+                "City P": "Cluster 16",
+                "City Q": "Cluster 6",
+                "City R": "Cluster 18",
+                "City S": "Cluster 19",
+                "City T": "Cluster 20",
+                "City U": "Cluster 21",
+                "City V": "Cluster 22",
+                "City W": "Cluster 21",
+                "City X": "Cluster 21",
+                "City Y": "Cluster 25",
+                "City Z": "Cluster 26",
+                "City AA": "Cluster 27",
+                "City AB": "Cluster 28",
+                "City AC": "Cluster 29",
+                "City AD": "Cluster 27",
+                "City AE": "Cluster 31",
+                "City AF": "Cluster 32",
+                "City AG": "Cluster 33",
+                "City AH": "Cluster 34",
+                "City AI": "Cluster 35",
+                "City AJ": "Cluster 36",
+                "City AK": "Cluster 37",
+                "City AL": "Cluster 38",
+                "City AM": "Cluster 39",
+                "City AN": "Cluster 40",
+                "City AO": "Cluster 38",
+                "City AP": "Cluster 39",
+                "City AQ": "Cluster 43",
+                "City AR": "Cluster 44",
+                "City AS": "Cluster 45",
+                "City AT": "Cluster 46",
+                "City AU": "Cluster 47",
+                "City AV": "Cluster 48",
+                "City AW": "Cluster 49",
+                "City AX": "Cluster 50"
             },
             "Queries": [
                 {

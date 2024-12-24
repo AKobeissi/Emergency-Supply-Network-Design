@@ -54,7 +54,11 @@
                 "Warehouse": "Warehouse 102"
             }
         ],
-        "Remaining Capacities": {}
+        "Remaining Capacities": {
+            "Warehouse 101": 0,
+            "Warehouse 102": 30,
+            "Warehouse 103": 100
+        }
     },
     "Task 3": {
         "Resource Redistribution": {
@@ -77,7 +81,8 @@
             "Initial Clusters": {
                 "City A": "Cluster 1",
                 "City B": "Cluster 2",
-                "City C": "Cluster 4"
+                "City C": "Cluster 3",
+                "City D": "Cluster 4"
             },
             "Merging Steps": [
                 {
@@ -86,22 +91,14 @@
                         "City A",
                         "City B"
                     ],
-                    "Cluster After Merge": "Cluster City A"
-                },
-                {
-                    "Action": "Merge",
-                    "Cities": [
-                        "City C",
-                        "City C"
-                    ],
-                    "Cluster After Merge": "Cluster City C"
+                    "Cluster After Merge": "Cluster 1"
                 }
             ],
             "Cluster Membership After Merging": {
-                "City 1": "Cluster 1",
-                "City 2": "Cluster 1",
-                "City 3": "Cluster 3",
-                "City 4": "Cluster 3"
+                "City A": "Cluster 1",
+                "City B": "Cluster 1",
+                "City C": "Cluster 3",
+                "City D": "Cluster 4"
             },
             "Queries": [
                 {
